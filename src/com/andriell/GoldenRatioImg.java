@@ -77,7 +77,6 @@ public class GoldenRatioImg extends BufferedImage {
     double l = 0;
 
     private void printCircle(double x, double y, double r, int i) {
-        System.out.println(l);
         double step = 1 / r, da = 0;
         switch (i % 4) {
             case 0:
@@ -99,7 +98,6 @@ public class GoldenRatioImg extends BufferedImage {
             paint(x + r * Math.cos(a + da), y + r * Math.sin(a + da));
             l += or * Math.sin(step);
         }
-        System.out.println(l);
     }
 
     private void paint(int x, int y, double a) {
