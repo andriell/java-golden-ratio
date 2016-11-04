@@ -77,31 +77,29 @@ public class GoldenRatioImg extends BufferedImage {
     double l = 0;
 
     private void printCircle(double x, double y, double r, int i) {
-        double ax = 0, ay = 0, step = 1 / r;
+        System.out.println(l);
+        double step = 1 / r, da = 0;
         switch (i % 4) {
             case 0:
-                ax = Math.PI;
-                ay = Math.PI;
+                da = PI2 * 2;
                 break;
             case 1:
-                ax = 0;
-                ay = Math.PI;
+                da = -PI2;
                 break;
             case 2:
-                ax = 0;
-                ay = 0;
+                da = 0;
                 break;
             case 3:
-                ax = Math.PI;
-                ay = 0;
+                da = PI2;
                 break;
         }
         double or = r;
         for (double a = 0; a <= PI2; a += step) {
+            r = or + l / 100;
+            paint(x + r * Math.cos(a + da), y + r * Math.sin(a + da));
             l += or * Math.sin(step);
-            r = or + 20 * Math.sin(l / 10);
-            paint(x + r * Math.sin(a + ax), y + r * Math.cos(a + ay));
         }
+        System.out.println(l);
     }
 
     private void paint(int x, int y, double a) {
