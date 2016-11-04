@@ -40,6 +40,8 @@ public class GoldenRatioImg extends BufferedImage {
                 y = 0;
                 break;
         }
+        x += 25;
+        y += 25;
 
         colorArray[0] = (color.getRGB() >> 24) & 0xff;
         colorArray[1] = (color.getRGB() >> 16) & 0xff;
@@ -81,7 +83,7 @@ public class GoldenRatioImg extends BufferedImage {
         double step = 1 / r, da = 0;
         switch (i % 4) {
             case 0:
-                da = PI2 * 2;
+                da = Math.PI;
                 break;
             case 1:
                 da = -PI2;
@@ -95,7 +97,7 @@ public class GoldenRatioImg extends BufferedImage {
         }
         double or = r;
         for (double a = 0; a <= PI2; a += step) {
-            r = or + l / 100;
+            r = or + 10 * Math.sin(l / 10);
             paint(x + r * Math.cos(a + da), y + r * Math.sin(a + da));
             l += or * Math.sin(step);
         }
