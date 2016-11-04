@@ -24,9 +24,11 @@ public class GoldenRatioImg extends BufferedImage {
         g.setColor(backgroundColor);
         g.fillRect(0, 0, width, height);
 
-        printSpiral(width, height, 0, 25, 25);
-
-        printSpiral(width, height, 1, (int) (width * Y), (int) (- height * Y));
+        printSpiral(1000, 1000, 0, 0, 0);
+        color = Color.red;
+        printSpiral(1000, 1000, 1, 525, -260);
+        color = Color.green;
+        printSpiral(1000, 1000, 3, 525, -260);
     }
 
     private void printSpiral(int width, int height, int position, int x, int y) {
@@ -94,7 +96,7 @@ public class GoldenRatioImg extends BufferedImage {
         }
         double or = r;
         for (double a = 0; a <= PI2; a += step) {
-            r = or + 10 * Math.sin(l);
+            r = or;
             paint(x + r * Math.cos(a + da), y + r * Math.sin(a + da));
             l += or * Math.sin(step);
         }
