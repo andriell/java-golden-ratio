@@ -97,7 +97,7 @@ public class GoldenRatioImg extends BufferedImage {
         }
         double or = r;
         for (double a = 0; a <= PI2; a += step) {
-            r = or + 10 * Math.sin(l / 10);
+            r = or + 10 * Math.sin(l);
             paint(x + r * Math.cos(a + da), y + r * Math.sin(a + da));
             l += or * Math.sin(step);
         }
