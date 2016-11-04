@@ -20,59 +20,57 @@ public class GoldenRatioImg extends BufferedImage {
 
         super(width, height, BufferedImage.TYPE_4BYTE_ABGR);
 
-        int i = 0;
-        double x = 0, y = 0, r = Math.min(width, height) - 50;
-        switch (i % 4) {
+        g = (Graphics2D) getGraphics();
+        g.setColor(backgroundColor);
+        g.fillRect(0, 0, width, height);
+
+        printSpiral(width, height, 0, 25, 25);
+
+        printSpiral(width, height, 1, (int) (width * Y), (int) (- height * Y));
+    }
+
+    private void printSpiral(int width, int height, int position, int x, int y) {
+        double r = Math.min(width, height) - 50;
+        switch (position % 4) {
             case 0:
-                x = r;
-                y = r * Y;
+                x += r;
+                y += r * Y;
                 break;
             case 1:
-                x = 0;
-                y = r;
+                y += r;
                 break;
             case 2:
-                x = 0;
-                y = 0;
                 break;
             case 3:
-                x = r * Y;
-                y = 0;
+                x += r * Y;
                 break;
         }
-        x += 25;
-        y += 25;
 
         colorArray[0] = (color.getRGB() >> 24) & 0xff;
         colorArray[1] = (color.getRGB() >> 16) & 0xff;
         colorArray[2] = (color.getRGB() >> 8) & 0xff;
         colorArray[3] = (color.getRGB()) & 0xff;
 
-        g = (Graphics2D) getGraphics();
-        g.setColor(backgroundColor);
-        g.fillRect(0, 0, width, height);
-
-
         while (true) {
             r = r * Y;
             if (r <= 1) {
                 break;
             }
-            switch (i % 4) {
+            switch (position % 4) {
                 case 0:
-                    x = x - r * Y;
+                    x -= r * Y;
                     break;
                 case 1:
-                    y = y - r * Y;
+                    y -= r * Y;
                     break;
                 case 2:
-                    x = x + r * Y;
+                    x += r * Y;
                     break;
                 case 3:
-                    y = y + r * Y;
+                    y += r * Y;
                     break;
             }
-            printCircle(x, y, r, i++);
+            printCircle(x, y, r, position++);
         }
     }
 
